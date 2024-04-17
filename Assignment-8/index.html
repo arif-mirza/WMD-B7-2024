@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment- 08 || Loop Execise</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap" rel="stylesheet">
+    <!-- bootstrap link -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="./styles.css">
+    <!-- toostify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="d-flex flex-column h-100">
+    <header>
+
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary  navbar bg-dark border-bottom border-body" data-bs-theme="dark" ">
+            <div class="container">
+              <a class="navbar-brand" href="#">Assignment -08</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Loops</a>
+                 
+                </ul>
+               
+                  <h4 class="text-white mx-4"> <span id="loginName"></span></h4>
+                  <button class="btn btn-outline-danger" type="submit" id="login">Login</button>
+                
+              </div>
+            </div>
+          </nav>
+
+
+
+
+
+
+    </header>
+    <main id="main">
+
+
+
+        <div class="py-4">
+           <div class="container">
+            <div class="row mb-3 mb-md-5">
+                <div class="col">
+                    <h3 class="text-center">Assignment - 08   ||  Loop Exercise </h3>
+                    <hr>
+                </div>
+            </div>
+
+
+
+            
+           <div class="row d-flex">
+           
+                <div class="col-12 col-md-6 col-md-0">
+                    <h4 class="text-center mt-2 fw-bold">Input</h4>
+                    <div class="border rounded-3 d-flex justify-content-center align-item-center p-4" style="border: 2px solid black;">
+                        <div class="input-group ">
+                            <input type="text" class="form-control form-control-lg" placeholder="type your text here" aria-label="Recipient's username" aria-describedby="button-addon2" id="inputField">
+                            <button class="btn btn-outline-danger" type="button" id = "inpClearBtn">Clear</button>
+                          </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <h4 class="text-center mt-2 fw-bold">Original Number</h4>
+                    <div class="border rounded-3 p-4 bg-dark text-white" class="orginalString" style="min-height: 100px;">
+                        <div id="orginalStatement" class="text-center fw-bold">
+                            <p style="font-size: 30px;"> Hello EveryOne</p>
+                          
+                          
+                        </div>
+                    </div>
+
+                </div>
+
+
+           
+
+
+            
+           </div>
+
+           <div class="row py-5">
+            <div class="col-12 col-md-6 col-md-0">
+                <h4 class="text-center mt-2">Buttons</h4>
+                <div class="border rounded-3 d-flex justify-content-center align-item-center p-4" style="border: 2px solid black;">
+                    <div class="buttons text-center">
+                    <button class="btn btn-danger m-1" id="print1To10" style="min-width: 45%;" >Print No. 1 to 10</button>
+                    <button class="btn btn-danger m-1" id="printEven" style="min-width: 45%;">Print Even Number</button><br>
+                    <button class="btn btn-danger m-1" id="deleteOccurance" style="min-width: 45%;">Delete All Occurance </button>
+                    <button class="btn btn-danger m-1" id="printPower" style="min-width: 45%;">Power of Number</button>
+                    <button class="btn btn-danger m-1" id="printPatternLoop" style="min-width: 45%;">Print Pattern Loop</button>
+                    <button class="btn btn-danger m-1" id="printDigits" style="min-width: 45%;">No. Of Digits</button>
+                    <button class="btn btn-danger m-1" id="SumOfDigits" style="min-width: 45%;">Sum Of Digits</button>
+                    <button class="btn btn-danger m-1" id="largestNumber" style="min-width: 45%;">Largest Number</button>
+                    <button class="btn btn-danger m-1" id="FibonacciSeries" style="min-width: 45%;">Fibonacci Series</button>
+                    <button class="btn btn-danger m-1" id="DuplicateNumber" style="min-width: 45%;">Duplicate Number</button>
+                    <button class="btn btn-danger m-1" id="linearAlgorithum" style="min-width: 45%;">Linear Algorithums</button>
+                    <button class="btn btn-danger m-1" id="binaryAlgorithum" style="min-width: 45%;">Binary Algorithums</button>
+
+                    </div>
+                    
+            </div>
+
+            <div class="emoji-sec mt-3 text-center">
+                <button class="btn btn-outline-dark" id="emoji-1">&#128512;</button>
+                <button class="btn btn-outline-dark" id="emoji-2">&#128516;</button>
+                <button class="btn btn-outline-dark" id="emoji-3">&#128513;</button>
+                <button class="btn btn-outline-dark" id="emoji-4">&#128514;</button>
+                <button class="btn btn-outline-dark" id="emoji-5">&#128520;</button>
+                <button class="btn btn-outline-dark" id="emoji-6">&#128525;</button>
+                <button class="btn btn-outline-dark" id="emoji-7">&#128526;</button>
+                <button class="btn btn-outline-dark" id="emoji-8">&#128527;</button>
+            </div>
+   
+
+        </div>
+
+        
+        <div class="col-12 col-md-6">
+            <h4 class="text-center mt-2">Output</h4>
+            <div class="border rounded-3 p-4" class="output" style="height: 280px;">
+                <div id="output" class="text-start fw-bold" style="font-size: 15px; overflow: hidden;">
+                    
+                   
+                  
+                  
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <button class="btn btn-outline-danger text-center" id="outClearBtn">Clear statement</button>
+
+            </div>
+           
+
+        </div>
+
+    </div>
+
+
+
+
+
+           </div>
+
+
+        </div>
+        
+
+
+
+
+
+
+
+
+    </main>
+    <footer class="py-0">
+
+        <div class="container-fluit">
+            <div class="row">
+                <div class="col bg-dark justify-content-center align-item-center">
+                    <p class="text-center text-white fw-bold "> &copy; All rights reserved. 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- bootstrap js scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- toostify js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
