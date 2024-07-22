@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.banner{
+    /* background: aqua; */
+    text-align: center;
+    /* width: 20px; */
+    /* height: 2x; */
+
+
+}
+.banner img{
+    width: 40em;
+}
+.navigation{
+    border: 2px solid rgb(139, 128, 128);
+    text-align: center;
+    /* width: 20px; */
+    padding:20px ;
+}
+.main-container{
+    text-align: center;
+    margin: 20px auto;
+}
+.main-container h2{
+    margin-bottom: 30px;
+}
+.main-container p{
+    margin:  20px;
+}
+
+.main-container table{
+    border: 1px solid black;
+    /* background-color: aqua; */
+    margin: 10px auto ;
+    /* text-align: center; */
+    /* justify-content: center; */
+    /* display: flex; */
+}
+.main-container table th{
+    border: 1px solid black;
+    padding: 1px 10px;
+}
+.main-container form label{
+    margin: 100px 0;
+}
+.img-section{
+    text-align: center;
+}
+.img-section img{
+    width: 15em;
+    height: 16em;
+    margin-bottom: 20px;
+}
+.home-img{
+    width: 20px;
+}
+.footer{
+    text-align: center;
+    margin-bottom: 50px;
+}
