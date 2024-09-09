@@ -1,0 +1,209 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+  
+}
+
+.home-container{
+  background: radial-gradient(circle, rgba(0, 51, 102, 0.7), rgba(0, 0, 0, 1));
+    height: 100vh !important;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+/* timmer- section  */
+.left-container{
+  /* background-color: aqua; */
+}
+.left-container .main-heading{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.left-container .main-container{
+ 
+  background-color: rgb(0, 5, 8);
+  padding: 150px; /* Padding won't work well for a circle, better to use height and width */
+  width: 300px;
+  height: 300px;
+  border: 7px solid rgb(217, 176, 255);
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+ 
+  
+ 
+}
+
+
+.home-container .main-container .timer-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: blue; */
+}
+
+
+
+/* btn sections */
+
+.right-container
+{
+  /* background-color: blue; */
+}
+.btn-sec{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  gap: 35px;
+  /* background-color: aqua; */
+}
+
+.unique-btn{
+  --glow-color: rgb(217, 176, 255);
+ --glow-spread-color: rgba(191, 123, 255, 0.781);
+ --enhanced-glow-color: rgb(231, 206, 255);
+ --btn-color: rgb(100, 61, 136);
+ border: .25em solid var(--glow-color);
+ padding: 1em 3em;
+ color: var(--glow-color);
+ font-size: 15px;
+ font-weight: bold;
+ background-color: var(--btn-color);
+ border-radius: 1em;
+ outline: none;
+ box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 1em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+ text-shadow: 0 0 .5em var(--glow-color);
+ position: relative;
+ transition: all 0.3s;
+ overflow:visible !important;
+}
+.unique-btn::after{
+  pointer-events: none;
+ content: "";
+ position: absolute;
+ top: 120%;
+ left: 0;
+ height: 100%;
+ width: 100%;
+ background-color: var(--glow-spread-color);
+ filter: blur(2em);
+ opacity: .7;
+ transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+.unique-btn:hover{
+  color: var(--btn-color);
+ background-color: var(--glow-color);
+ box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 2em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+}
+.unique-btn:active{
+  box-shadow: 0 0 0.6em .25em var(--glow-color),
+  0 0 2.5em 2em var(--glow-spread-color),
+  inset 0 0 .5em .25em var(--glow-color);
+}
+.numbers{
+  font-size: 90px;
+}
+.countDown{
+  /* background-color: aqua; */
+  text-align: center;
+}
+.countDown label{
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.countDown select{
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  margin: 10px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1075px){
+  .btn-sec{
+    gap: 10px;
+  }
+
+}
+
+@media only screen and (max-width:887px){
+  .btn-sec{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+
+  }
+  
+
+}
+@media only screen and (max-width:672px){
+  .home-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .btn-sec .unique-btn{
+   width: 200px;
+  }
+  .btn {
+    text-align: center;
+    padding: 10px 20px;
+    width: 200px;
+  }
+  .main-container{
+    margin-bottom: 50px;
+  }
+  .right-container{
+    margin: 10px auto;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .btn-sec{
+    gap: 10px;
+  }
+  .main-container{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+
+}
