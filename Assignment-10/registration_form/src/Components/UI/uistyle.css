@@ -1,0 +1,32 @@
+.question{
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  color: #ffffff;
+  width: 20%;
+  margin-top: 50px;
+  margin-left: 27%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  z-index: 9999;
+  position: absolute;
+  
+
+
+
+
+}
+
+.question:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.question a{
+  color: #ffffff;
+  text-decoration: none;
+
+}

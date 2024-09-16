@@ -1,0 +1,33 @@
+.main-container{
+  background: transparent; /* Semi-transparent background */
+  backdrop-filter: blur(20px);       /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  border-radius: 15px;               /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Soft shadow for depth */
+  padding: 20px;
+  color: #ffffff !important; 
+  width: 70%;
+  height: auto;
+  margin: auto auto;
+  margin-top: 10px;
+ 
+}
+.form-control-sm{
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #fff !important;
+  color: #fff !important;
+
+  
+}
+.form-control-sm::placeholder{
+  color: #d7d5d5 !important;
+}
+.form-control-sm:focus{
+  border: transparent !important;
+  border: transparent !important;
+  border-bottom: 1px solid #fff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
