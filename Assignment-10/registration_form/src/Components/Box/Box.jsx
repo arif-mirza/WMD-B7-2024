@@ -40,12 +40,10 @@ function Box() {
     const isValidForm = await formSchema.isValid(formData);
 
     if (isValidForm) {
-     
       console.log("Form submitted: ", formData);
-     
+
       toast.success("Form Submitted Successfully!");
     } else {
-    
       const validationErrors = await formSchema
         .validate(formData, { abortEarly: false })
         .catch((err) => {
@@ -69,7 +67,6 @@ function Box() {
       [name]: value,
     }));
 
-  
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
@@ -252,7 +249,7 @@ function Box() {
               </Button>
             </div>
           </div>
-          
+
           <div className="col-6">
             <div className="question">
               <p>

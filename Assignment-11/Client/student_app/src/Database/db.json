@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "a20e",
+      "Name": "arif",
+      "Email": "mirzaarif919@gmail.com",
+      "Course": "application",
+      "Phone": "0928938"
+    },
+    {
+      "id": "f503",
+      "Name": "arif",
+      "Email": "mirzaarif919@gmail.com",
+      "Course": "adf",
+      "Phone": "3423423"
+    }
+  ]
+}

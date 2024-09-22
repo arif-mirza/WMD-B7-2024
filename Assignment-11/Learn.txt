@@ -1,0 +1,45 @@
+thing to understand 
+
+
+how to get Values from inputs 
+how to add custom css by using material UI
+how to call a API like Axios
+
+script of this project in front-end part
+1) first of all we install packages from npm like material UI , router-dom , axios, 
+2) create the folder structure
+3) create Header with material UI by using custom styled 
+   => add the routes in app.js and use navlink in header part 
+4) second we create the form to get values from the the user 
+5) crate the addStudent component 
+  => create the form by using material UI and styled with styled component.
+  => get the values from the inputs by passing event and write name values
+  => create a state of student and setStudent which is intial value is a empty object
+  => create the add Student Button in this button takes a function this function accept a API call
+6) create the API by installing Axios from npm 
+  => create a api.js file 
+  =>create the post request the post requsest usally take two arguments one is API URL and second is    the object  axios.post(`${URL_API}/addStudent`, data) in this syntax the data are the object which is student object 
+  => alwayes use the try catch for this and use it async and await stratigies 
+
+7) setup the backend 
+  => create the index.js and create the npm init command for package.json 
+  => install the express for backend 
+  => create the server of express by using nodemon by writing the scrips on package.josn file.
+  => then we should create the API 
+  => create the Monogo DB cloud
+  => first of all configration to the database
+  => we install the library for this is mongooes for database configration
+8) create the cluster of mongodb and use the url.
+  => create the env file by installing the dovenv package
+  => for the use of username and password use process.env.username etc. 
+  => then we create the routes like frontend 
+  => for routes install the package of cors for this 
+  => procedure is that when i click on add student button it calls a api which is /addstudent and then call the routes control go to the routes and match the routes path which is addstudent and then it print hello 
+9) create the controller folder and create the file of controler.js for write all the callback functions of the routes.
+  => then we validate the data so we create a file for validation.
+  => create the schema of mongoose for this by useing the mongoose.schema.
+  => then we use the mongoose.model which take two argument one is the collection(table) and second is the mongoose schema.
+
+
+
+script of this project in Back-end part
