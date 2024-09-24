@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { getStudent , editStudent } from "../service/api";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 import formSchema from "../Validation/formSchema";

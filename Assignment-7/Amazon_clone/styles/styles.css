@@ -1,0 +1,338 @@
+*{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    list-style: none;
+    /* border: 1px solid red !important; */
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* commen styles */
+
+.commen-hover-effect{
+    transition: 0.1s;
+    
+
+}
+.commen-hover-effect:hover{
+    border: 1px solid #fff;
+    /* transform: rotateY('5deg'); */
+    /* transform: scale(0.3); */
+    border-radius: 2px;
+    
+
+}
+
+.commen-nav-div{
+    min-width: 80px;
+    height: 45px;
+    /* background-color: aqua; */
+
+}
+.commen-nav2-div{
+    min-width: 80px;
+    height: auto;
+    /* background-color: black; */
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-heading-font{
+    font-size: 23px;
+}
+
+
+
+
+/* ===================================================== */
+
+
+
+
+
+
+
+
+
+
+#main-logo{
+width: 100px !important;
+margin-left: 10px !important;
+}
+#nav-container{
+    /* margin-top: -10px;
+    margin-bottom: -10px; */
+    font-size: 14px;
+}
+.search-bar{
+    /* background-color: aqua !important; */
+    width: 570px !important;    
+}
+#search-bar{
+    background-color: yellow;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* left: -10px; */
+    margin-left: -65px !important;
+    margin-top: 15px !important;
+    padding-top: 17px !important;
+    padding-bottom: 17px !important;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    color: #333;
+    border-radius: 0 5px 5px 0 ;
+
+}
+#flag-img{
+    width: 25px;
+    padding: 10px;
+    margin: 5px !important;
+    /* margin-left: 10px !important; */
+  
+
+}
+#navbr{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.para{
+    font-size: 13px;
+    color: #fff;
+}
+.para span{
+    font-size: 13px;
+    font-weight: bold;
+}
+#nav-cart-icon{
+    color: #fff;
+    font-size: 70px !important;
+}
+
+#cart{
+    /* background-color: aqua; */
+    min-width: 90px;
+    min-height: 45px;
+}
+nav ul li a{
+  padding: -20px !important;
+}
+
+#nav_2{
+    padding:-90px 0px !important ;
+    
+}
+.carousel-control-prev{
+    background-color: none !important;
+    height: 50% !important;
+    background-color: none !important;
+   
+    display        : flex !important;
+    justify-content: center !important;
+    align-items    : center !important;
+    border-radius  : 5px !important;
+    width          : 80px !important;
+    color: #333 !important;
+    
+}
+.carousel-control-prev:hover{
+    border: 1px solid #888888;
+    
+}
+/* .carousel-control-prev-icon{
+    font-size: 80px !important;
+    width: 800px !important;
+} */
+
+.carousel-control-next{
+    background-color: none !important;
+    height: 50% !important;
+    background-color: none !important;
+   
+    display        : flex !important;
+    justify-content: center !important;
+    align-items    : center !important;
+    border-radius  : 5px !important;
+    width          : 80px !important;
+    
+   
+
+}
+.carousel-control-next:hover{
+    border: 1px solid #888888;
+}
+.card .container .row .col-6 img{
+    width: 140px !important;
+}
+
+.card{
+    width: 300px !important;
+    height: 390px;
+    margin: 10px auto !important;
+    
+}
+#card-main-row{
+    margin-top: -300px !important;
+    gap: 10px !important;
+}
+#car-card{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+    
+}
+#scroll-card{
+    width: 1340px !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+}
+#scroll-card2{
+    /* width: 1340px!important;
+    height: auto !important;
+    overflow-x: scroll!important;
+    overflow-y: hidden!important; */
+    position: relative !important;
+}
+#inner-Card{
+    height: 300px !important; 
+    width:270px !important;
+    font-size: 14px;
+
+}
+#inner-card-row{
+    /* overflow-x      : scroll !important;
+    background-color: aqua !important;
+    height          : 400px!important;
+    width           : 100%!important; */
+
+}
+.card2{
+    overflow-x      : scroll !important;
+    background-color: #fff !important;
+    height          : 400px!important;
+    width           : 100%!important;
+
+}
+
+.carousel-indicators{
+ 
+  width  : 100% !important;
+  height : auto !important;
+  gap    : 30px !important;
+  display: block !important;
+  /* border : 1px solid red ; */
+ 
+}
+
+.carousel-indicators button{
+   width  : 33%;
+   visibility: hidden;
+   height: 7px;
+   border-radius: 20px;
+    
+}
+.carousel-indicators button.active{
+      visibility: visible !important;
+    background-color: #888888;
+}
+#w-25{
+    width: 215px !important;
+}
+.carousel-control-next-icon{
+    background-color: black !important;
+}
+.carousel-control-prev-icon{
+    background-color: black!important;
+}
+
+.carousel-inner{
+    gap: 50px !important;
+}
+.signup-sec{
+    /* border: 1px solid red !important; */
+    display: block !important;
+}
+#footer-list a{
+    color          : #ddddd8;
+   
+}
+.top-footer{
+    margin-left : auto !important;
+    margin-right: auto !important;
+    margin-top  : 5px ;
+    margin-bottom  : 5px ;
+}
+.top-footer ul li a{
+    color: #d7d7d8 !important;
+    text-decoration: underline;
+}
+.top-footer ul li a:hover{
+    text-decoration: underline !important;
+}
+
+.top-footer ul li{
+    display: flex !important;
+    justify-content: start !important;
+    align-items: center !important;
+    /* flex-direction: column !important; */
+
+}
+.main-footer{
+    width: 100% !important;
+    height: auto!important;
+}
+.main-footer .container{
+    width: 80% !important;
+}
+.link-part{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap!important;
+    /* border: 1px solid red !important; */
+}
+.link-part .single-link a{
+    color: #d7d7d8 !important;
+    font-size: 12px !important;
+    display: flex !important;
+    justify-content: start !important;
+    align-items: center !important;
+    flex-direction: column !important;
+}
+.link-part .single-link a:hover{
+    text-decoration: underline !important;
+
+}
+ #last-row {
+    width: 80% !important;
+    /* background-color: aqua !important; */
+    text-align: center;
+    margin: 15px auto !important;
+}
+#last-reserved-row{
+    width: 40% !important;
+    margin: 150px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+
+}
+
+
+
+
+
+
+
+
+

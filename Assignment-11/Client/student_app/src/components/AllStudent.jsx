@@ -1,55 +1,77 @@
-import React, { useState } from 'react'
-import {Table, TableCell, TableHead, TableRow, TableBody, styled, Button} from "@mui/material";
-import { useEffect } from 'react';
-import { getStudents, deleteStudent } from "../service/api.js"
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import {
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableBody,
+  styled,
+} from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import StudentItem from "./studentItem.jsx";
+import AddStudent from "./AddStudent.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteStudent } from "../../redux/StudentSlice.jsx";
 
 const TableContainer = styled(Table)`
   margin: 10px auto;
   width: 90%;
-
 `;
 
 const Thead = styled(TableRow)`
   background: #000;
   color: #fff;
-  width:100px;
-  > th  {
-  color: #fff;
+  width: 100px;
+  > th {
+    color: #fff;
   }
-
 `;
 
+function AllStudent(props) {
+  const dispatch = useDispatch();
+  const students = useSelector((state) => state.student.data);
 
 
-function AllStudent() {
-  const [student , setStudent] = useState([]);
 
-  // data nikalna hy hamne us k liye api call karni hogi
-  const getStudentDetails = async () => {
-    let response = await getStudents()
-    console.log(response);
-    setStudent(response.data)
-  
+  const navigate = useNavigate(); // to clear state after adding student
+  // const [data, setData] = useState([
+  //   {
+  //     id: 1,
+  //     name: "arif",
+  //     email: "arif@gamil.com",
+  //     course: "web dev",
+  //     phone: "83947395",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "ali",
+  //     email: "ali@gamil.com",
+  //     course: "app dev",
+  //     phone: "84534545",
+  //   },
+  // ]);
 
+
+  const handleDelete = (id) => {
+    // let newData = data.filter((item) => item.id !== id);
+    // setData(newData);
+    dispatch(deleteStudent(id));
+  };
+
+// const handleSubmit = (student) => {
+//     console.log("student from back = > ", student);
+//     setData([...data, {
+//       id: data.length + 1,
+//      ...student,
+//     }]);
     
-  }
+// }
 
-  const deleteSudent = async (id) => {
-    let response = await deleteStudent(id);
-    console.log(response);
-    getStudentDetails();
-    
-  }
 
-  useEffect(() => {
-    getStudentDetails()
 
-  }, [])
-  
   return (
-
+    <>
+    
     <TableContainer>
       <TableHead>
         <Thead>
@@ -58,31 +80,17 @@ function AllStudent() {
           <TableCell>Email</TableCell>
           <TableCell>Course</TableCell>
           <TableCell>Phone</TableCell>
-          <TableCell></TableCell>
+          <TableCell>Actions</TableCell>
         </Thead>
-
       </TableHead>
       <TableBody>
-        {
-          student.map((student,index) => (
-            <TableRow>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{student.Name}</TableCell>
-              <TableCell>{student.Email}</TableCell>
-              <TableCell>{student.Course}</TableCell>
-              <TableCell>{student.Phone}</TableCell>
-              <TableCell>
-                <Button variant='contained' color='secondary' style={{marginRight:'10px'}} component={Link} to={`/edit/${student.id}`} >Edit</Button>
-                <Button variant='contained' onClick={() => deleteSudent(student.id)} >Delete</Button>
-              </TableCell>
-              
-              
-            </TableRow>
-          ))
-        }
+        {data.map((item) => (
+          <StudentItem key={item.id} item={item} handleDelete={handleDelete} />
+        ))}
       </TableBody>
     </TableContainer>
-  )
+    </>
+  );
 }
 
-export default AllStudent
+export default AllStudent;

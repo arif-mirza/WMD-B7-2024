@@ -10,9 +10,7 @@ import EditStudent from "./components/EditStudent";
 
 
 
-function App() {
-
-
+function App(props) {
   return (
     <>
   <BrowserRouter>
