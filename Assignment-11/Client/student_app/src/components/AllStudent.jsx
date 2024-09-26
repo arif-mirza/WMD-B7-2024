@@ -10,8 +10,9 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import StudentItem from "./studentItem.jsx";
 import AddStudent from "./AddStudent.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteStudent } from "../../redux/StudentSlice.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteStudent } from "../features/studentSlice.js";
+
 
 const TableContainer = styled(Table)`
   margin: 10px auto;
@@ -28,44 +29,28 @@ const Thead = styled(TableRow)`
 `;
 
 function AllStudent(props) {
+
+  const students = useSelector((state) => state.students.students);
   const dispatch = useDispatch();
-  const students = useSelector((state) => state.student.data);
-
-
-
-  const navigate = useNavigate(); // to clear state after adding student
-  // const [data, setData] = useState([
-  //   {
-  //     id: 1,
-  //     name: "arif",
-  //     email: "arif@gamil.com",
-  //     course: "web dev",
-  //     phone: "83947395",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "ali",
-  //     email: "ali@gamil.com",
-  //     course: "app dev",
-  //     phone: "84534545",
-  //   },
-  // ]);
-
 
   const handleDelete = (id) => {
     // let newData = data.filter((item) => item.id !== id);
     // setData(newData);
-    dispatch(deleteStudent(id));
+
+      dispatch(deleteStudent(id));
+  
+    
+
   };
 
-// const handleSubmit = (student) => {
-//     console.log("student from back = > ", student);
-//     setData([...data, {
-//       id: data.length + 1,
-//      ...student,
-//     }]);
+const handleSubmit = (student) => {
+    console.log("student from back = > ", student);
+    setData([...data, {
+      id: data.length + 1,
+     ...student,
+    }]);
     
-// }
+}
 
 
 
@@ -84,7 +69,7 @@ function AllStudent(props) {
         </Thead>
       </TableHead>
       <TableBody>
-        {data.map((item) => (
+        {students.map((item) => (
           <StudentItem key={item.id} item={item} handleDelete={handleDelete} />
         ))}
       </TableBody>

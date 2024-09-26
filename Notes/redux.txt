@@ -1,0 +1,22 @@
+setup the project
+1 -install redux-toolkil and react-redux
+2- create the slices file
+  => this the slice file we have the 2 things 
+        => 1- is the the name of the reducer
+        =>2- reduceres are the functions or we say features that contains the logics of the funcions 
+   => we use this reducers through useDispatch method
+   => we use the useSelector to use the values like useState	
+3- create a store 
+     => in this store use the slices
+4- wrap the app.js in provider and give the props is store={store}
+
+
+
+information
+in our project we use the features in slice files are using useSectors and usedispatch
+the code flow in redux are :
+=> first of all when i click on the buttons it actives the onclick function.
+=> the onclick function contains the feature useing dispatch e.g. dispatch(incrementValue()).
+=> then it go to the store for this feature but the feature is not available in store.
+=> then it go to the slices file and get the specific feature.
+

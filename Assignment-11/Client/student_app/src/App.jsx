@@ -20,7 +20,7 @@ function App(props) {
      <Route path="/" element={<Home />} />
      <Route path="/allstudents" element={<AllStudent />} />
      <Route path="/addstudent" element={<AddStudent />} />
-     <Route path="/edit/:id" element={<EditStudent />} />
+     <Route path="/editstudent/:id" element={<EditStudent />} />
    </Routes>
    
    

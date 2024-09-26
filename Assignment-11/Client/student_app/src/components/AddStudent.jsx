@@ -8,9 +8,13 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addStudent } from "../../redux/StudentSlice";
+import { useNavigate } from "react-router-dom";
+import { addStudent } from "../features/studentSlice";
+import formSchema from "../Validation/formSchema";
+import * as yup from "yup"
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Container = styled(FormGroup)`
   width: 50%;
   text-align: center;
@@ -19,31 +23,36 @@ const Container = styled(FormGroup)`
 `;
 
 function AddStudent(props) {
-  const dispatch = useDispatch();
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [course, setCourse] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [course, setCourse] = useState("");
+  const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let newStudent = {
-      name,
-      email,
-      course,
-      phone,
-    };
+  const dispatch = useDispatch();
 
-    // props.handleSubmit(newStudent)
-    dispatch(addStudent(newStudent));
-    navigate('/allstudents');
-  
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newStudent = { name, email, course, phone }
+    try{
+      await formSchema.validate(newStudent,{ abortEarly: false });
+      dispatch(addStudent(newStudent));
+      navigate("/allstudents");
+
+    }catch(err){
+      if (err instanceof yup.ValidationError) {
+        err.errors.forEach((error) => {
+          toast.error(error); // Display each error message
+        });
+      }
+      
+    }
+  }
 
   return (
-    <Container>
+    <>   
+    <ToastContainer />
+     <Container>
       <Typography variant="h4">Add Student</Typography>
 
       <FormControl>
@@ -72,7 +81,8 @@ function AddStudent(props) {
         </Button>
       </FormControl>
     </Container>
+    </>
+
   );
 }
-
 export default AddStudent;

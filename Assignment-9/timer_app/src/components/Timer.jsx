@@ -1,106 +1,94 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import "../components/timer.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setMode,
+  setSelectedMinutes,
+  setSelectedSeconds,
+  startTimer,
+  stopTimer,
+  resetTimer,
+  incrementSeconds,
+  decrementTimer,
+} from "../features/TimerSlice.jsx";
 
 function Timmer() {
-  // states
-  const [isRunning, setIsRunning] = useState(false);
-  const [seconds, setSeconds] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [heading, setHeading] = useState("Select the Mode");
-  const [selectedMinutes, setSelectedMinutes] = useState(0);
-  const [selectedSeconds, setSelectedSeconds] = useState(0);
-  const [mode, setMode] = useState("mode");
-  const timer = useRef(null)
+  const timer = useRef(null);
+
+  // redux logic
+  const dispatch = useDispatch();
+  const {
+    isRunning,
+    seconds,
+    minutes,
+    heading,
+    selectedMinutes,
+    selectedSeconds,
+    mode,
+  } = useSelector((state) => state.timer);
+
 
   // handleModeChange
-  const handleModeChange = (selecedMode) => {
-    setMode(selecedMode);
-    setHeading(selecedMode);
-    setSeconds(0)
-    setMinutes(0)
+  const handleModeChange = (selectedMode) => {
+    dispatch(setMode(selectedMode));
+    clearInterval(timer.current);
+  };
 
-
-  }
-
-  // startACtion
+  // startAction
   const startAction = () => {
-    if (isRunning) return; 
-    setIsRunning(true);
-  
+    if (isRunning) return;
+
+   
+
+    dispatch(startTimer());
+
     if (mode === "Stop Watch") {
       timer.current = setInterval(() => {
-        setSeconds((prevSecond) => {
-          if (prevSecond === 59) {
-            setMinutes((prevMinute) => prevMinute + 1);
-            return 0;
-          } else {
-            return prevSecond + 1;
-          }
-        });
+        dispatch(incrementSeconds());
       }, 1000);
-  
     } else if (mode === "Timer") {
-      let remainingMinutes = parseInt(selectedMinutes);
-      let remainingSeconds = parseInt(selectedSeconds);
-  
-      if (isNaN(remainingMinutes)) remainingMinutes = 0;
-      if (isNaN(remainingSeconds)) remainingSeconds = 0;
-  
-      setMinutes(remainingMinutes);
-      setSeconds(remainingSeconds);
-  
+      let remainingMinutes = selectedMinutes;
+      let remainingSeconds = selectedSeconds;
+      console.log(remainingMinutes, ";", remainingSeconds);
+       // Prevent starting if both minutes and seconds are zero
+    if (remainingMinutes === 0 && remainingSeconds === 0) {
+      alert("Please set a time to start the countdown.");
+      return;
+    }
+
       timer.current = setInterval(() => {
-        // Local variables to capture the current state of minutes and seconds
-        let updatedMinutes = remainingMinutes;
-        let updatedSeconds = remainingSeconds;
-  
-        if (updatedSeconds === 0) {
-          if (updatedMinutes === 0) {
-            clearInterval(timer.current);
-            alert("Time Over");
-            setSeconds(0);
-            setMinutes(0);
-            setIsRunning(false);  // Stop running flag
-          } else {
-            // Decrement minutes and reset seconds to 59
-            updatedMinutes -= 1;
-            updatedSeconds = 59;
-          }
+        if (remainingMinutes === 0 && remainingSeconds === 0) {
+          clearInterval(timer.current);
+          alert("Time Over");
+          dispatch(resetTimer());
         } else {
-          // Decrement seconds
-          updatedSeconds -= 1;
+          if (remainingSeconds === 0) {
+            remainingMinutes -= 1;
+            remainingSeconds = 59;
+          } else {
+            remainingSeconds -= 1;
+          }
+
+          dispatch(setSelectedMinutes(remainingMinutes));
+          dispatch(setSelectedSeconds(remainingSeconds));
         }
-  
-        // Update the state variables for next cycle
-        remainingMinutes = updatedMinutes;
-        remainingSeconds = updatedSeconds;
-  
-        
-        setMinutes(updatedMinutes);
-        setSeconds(updatedSeconds);
       }, 1000);
-  
     } else {
       alert("Invalid Mode Selected");
     }
   };
-  
-
-
-
 
   // stopAction
   const stopAction = () => {
-    setIsRunning(false);
-    clearInterval(timer.current)
-  }
+    dispatch(stopTimer());
+    clearInterval(timer.current);
+  };
+
   // resetAction
   const resetAction = () => {
-    setIsRunning(false);
-    clearInterval(timer.current)
-    setSeconds(0)
-    setMinutes(0)
-  }
+    dispatch(resetTimer());
+    clearInterval(timer.current);
+  };
 
   return (
     <>
@@ -111,6 +99,7 @@ function Timmer() {
           </div>
           <div className="main-container">
             <div className="timer-section">
+              {/* Display the live countdown using minutes and seconds */}
               <h3 className="numbers">
                 {minutes < 10 ? "0" + minutes : minutes}:
                 {seconds < 10 ? "0" + seconds : seconds}
@@ -118,38 +107,40 @@ function Timmer() {
             </div>
           </div>
         </div>
+
         <div className="right-container">
           <div className="form-section">
-            {/* add the mode condition */}
-            {
-              mode === "Timer" && (
-                <div className="countDown">
-                  <label>Minutes:</label>
-                  <select
-                    value={selectedMinutes}
-                    onChange={(e) => setSelectedMinutes(Number(e.target.value))}
-                  >
-                    {[...Array(60).keys()].map((min) => (
-                      <option key={min} value={min}>
-                        {min < 10 ? `0${min}` : min}
-                      </option>
-                    ))}
-                  </select>
-            
-                  <label>Seconds:</label>
-                  <select
-                    value={selectedSeconds}
-                    onChange={(e) => setSelectedSeconds(Number(e.target.value))}
-                  >
-                    {[...Array(60).keys()].map((sec) => (
-                      <option key={sec} value={sec}>
-                        {sec < 10 ? `0${sec}` : sec}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )
-            }
+            {mode === "Timer" && (
+              <div className="countDown">
+                <label>Minutes:</label>
+                <select
+                  value={selectedMinutes}
+                  onChange={(e) =>
+                    dispatch(setSelectedMinutes(Number(e.target.value)))
+                  }
+                >
+                  {[...Array(60).keys()].map((min) => (
+                    <option key={min} value={min}>
+                      {min < 10 ? `0${min}` : min}
+                    </option>
+                  ))}
+                </select>
+
+                <label>Seconds:</label>
+                <select
+                  value={selectedSeconds}
+                  onChange={(e) =>
+                    dispatch(setSelectedSeconds(Number(e.target.value)))
+                  }
+                >
+                  {[...Array(60).keys()].map((sec) => (
+                    <option key={sec} value={sec}>
+                      {sec < 10 ? `0${sec}` : sec}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             <div className="input-group mb-3">
               <button
@@ -157,21 +148,24 @@ function Timmer() {
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                
               >
                 {mode}
               </button>
               <ul className="dropdown-menu dropdown-menu-end">
                 <li>
-                  <a className="dropdown-item" href="#"
-                  onClick={() => handleModeChange("Stop Watch")}
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    onClick={() => handleModeChange("Stop Watch")}
                   >
                     Stop Watch
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#"
-                  onClick={() => handleModeChange("Timer")}
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    onClick={() => handleModeChange("Timer")}
                   >
                     Timer
                   </a>
@@ -180,18 +174,15 @@ function Timmer() {
             </div>
           </div>
           <div className="btn-sec">
-            <button className="unique-btn"
-            onClick={startAction}
-            
-            >Start</button>
-            <button className="unique-btn"
-            onClick={stopAction}
-            
-            >Stop</button>
-            <button className="unique-btn"
-             onClick={resetAction}
-            
-            >Reset</button>
+            <button className="unique-btn" onClick={startAction}>
+              Start
+            </button>
+            <button className="unique-btn" onClick={stopAction}>
+              Stop
+            </button>
+            <button className="unique-btn" onClick={resetAction}>
+              Reset
+            </button>
           </div>
         </div>
       </div>
@@ -200,4 +191,3 @@ function Timmer() {
 }
 
 export default Timmer;
-
