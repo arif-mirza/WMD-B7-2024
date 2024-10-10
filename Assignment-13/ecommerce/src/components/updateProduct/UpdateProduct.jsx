@@ -45,7 +45,7 @@ const UpdateProduct = () => {
     dispatch(updateProduct(updatedProduct));
 
     // Navigate back to products list after updating
-    navigate("/");
+    navigate("/products");
   };
 
   return (
@@ -102,9 +102,12 @@ const UpdateProduct = () => {
                 onChange={(e) => setImage(e.target.value)}
               />
             </div>
-            <NavLink to='/products' type="submit" className="btn btn-outline-dark w-100 my-3">
+          
+            <button  className="btn btn-outline-dark w-100 my-3">
               Update Product
-            </NavLink>
+            </button>
+
+          
           </form>
         </div>
       </div>

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { addProduct } from "../../store/slices/productSlice";
-
+import formSchema from "../../validation/formSchema";
+import * as Yup from "yup";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function AddProduct() {
   // states
   const [image, setImage] = useState();
@@ -10,52 +13,62 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setcategory] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]; // Get the selected file
+    if (file) {
+      const reader = new FileReader(); // Create a FileReader object
+      reader.onloadend = () => {
+        setImage(reader.result); // Set the image state with the Data URL
+      };
+      reader.readAsDataURL(file); // Convert the file to a Data URL
+    }
+  };
 
- const dispatch = useDispatch();
- const handleImageChange = (e) => {
-  const file = e.target.files[0]; // Get the selected file
-  if (file) {
-    const reader = new FileReader(); // Create a FileReader object
-    reader.onloadend = () => {
-      setImage(reader.result); // Set the image state with the Data URL
-    };
-    reader.readAsDataURL(file); // Convert the file to a Data URL
-  }
-};
-
-
-
-
-
-  const handleAddProduct = () => {
+  const handleAddProduct = async (e) => {
+    e.preventDefault();
     // log the values
-    console.log("product img", Image)
-    console.log('Product Name : ', name);
-    console.log('Product Price : ', price);
-    console.log('Product Description : ', description);
-    console.log('Product Category : ', category);
+    // console.log("product img", Image)
+    // console.log('Product Name : ', name);
+    // console.log('Product Price : ', price);
+    // console.log('Product Description : ', description);
+    // console.log('Product Category : ', category);
 
     let newProduct = {
       id: Date.now(),
       image,
-      title : name,
+      title: name,
       price,
       description,
       category,
     };
     console.log("newProduct ====> ", newProduct);
-    // dispatch action to add new product
-    dispatch(addProduct(newProduct));
+
+    // validation
+    try {
+      await formSchema.validate(newProduct, { abortEarly: false });
+      dispatch(addProduct(newProduct));
+      toast.success("Product added successfully!");
+      navigate("/products");
+    } catch (err) {
+      if (err.inner) {
+        // Show validation errors using Toastify
+        err.inner.forEach((error) => {
+          toast.error(error.message);
+        });
+      }
+    }
   };
 
   return (
     <>
       {/* add product form  */}
-
+      <ToastContainer />
       <div className="container">
         <div className="row">
           <div className="col-12 text-center my-4">
-            <h2 className="display-5 fw-bold">Add Product</h2>
+            <h2 className="display-3 fw-bold text-dark">Add Product</h2>
           </div>
         </div>
         <div className="row d-flex justify-content-center">
