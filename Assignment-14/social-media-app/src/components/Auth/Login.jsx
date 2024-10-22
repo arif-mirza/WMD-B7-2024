@@ -16,13 +16,13 @@ import * as Yup from "yup";
 import ClipLoader from "react-spinners/ClipLoader";
 import { AuthContext } from "../../AppContext/AppContext";
 import { onAuthStateChanged } from "firebase/auth";
-import {auth} from "../../firebase/firebase.jsx"
+import { auth } from "../../firebase/firebase.jsx";
 
 function Login() {
   const { signInWithGoogle, loginWithEmailAndPassword } =
     useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   let initialValues = {
     email: "",
@@ -35,13 +35,13 @@ function Login() {
     setLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        Navigate("/");
+        navigate("/");
         setLoading(false);
       } else {
         setLoading(false);
       }
     });
-  }, [Navigate]);
+  }, [navigate]);
 
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Required"),
@@ -54,8 +54,8 @@ function Login() {
     e.preventDefault();
     const { email, password } = formik.values;
     if (formik.isValid === true) {
-      loginWithEmailAndPassword(email, password);
       setLoading(true);
+      loginWithEmailAndPassword(email, password);
     } else {
       alert("check your input field");
       setLoading(false);

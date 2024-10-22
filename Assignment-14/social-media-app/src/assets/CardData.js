@@ -29,10 +29,5 @@ export const cardData = [
     image: card5,
     status: "Online",
   },
-  {
-    id: "5",
-    name: "Michael Bony",
-    image: card5,
-    status: "Offline",
-  },
+
 ];

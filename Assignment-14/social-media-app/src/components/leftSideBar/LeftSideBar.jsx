@@ -85,7 +85,7 @@ const LeftSideBar = () => {
 
   return (
     <>
-      <div className="flex flex-col h-screen bg-white pb-4 border-2 rounded-r-xl shadow-lg">
+      <div className=" flex flex-col h-screen bg-white pb-4 border-2 rounded-r-xl shadow-lg">
         <div className="flex flex-col items-center relative">
           <img src={nature} alt="nature" className="h-28 w-full rounded-r-xl" />
           <div className="absolute -bottom-4">

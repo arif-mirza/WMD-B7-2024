@@ -19,9 +19,10 @@ import {auth} from "../../firebase/firebase.jsx"
 function Register() {
   // loading
   const [loading, setLoading] = useState(false);
-  const { registerWithEmailAndPassword } = useContext(AuthContext);
+  const { registerWithEmailAndPassword, signInWithGoogle } = useContext(AuthContext);
+ 
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
 
 
@@ -31,14 +32,16 @@ function Register() {
     setLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        Navigate("/");
+        navigate("/");
         setLoading(false);
       } else {
         setLoading(false);
       }
     });
-  }, [Navigate]);
+  }, [navigate])
+  
 
+  // initialValues
   let initialValues = {
     email: "",
     password: "",
@@ -47,31 +50,28 @@ function Register() {
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("Required")
-      .min("4", "Must be at least 4 characters long")
-      .matches(/^[a-zA-Z]+$/, "Name can only contain letters"),
+      .min("4", "Must be at least 4 characters long"),
+      
     email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string()
-      .required("Required")
-      .min("6", "Must be at least 6 characters long")
-      .matches(/^[a-zA-Z]+$/, "Password can only contain letters"),
+    .required("Required")
+      .min(6, "Must be at least 6 characters long")
+     
   });
 
   const handleRegister = (e) => {
     e.preventDefault();
     const { name, email, password } = formik.values;
     if (formik.isValid === true) {
-      registerWithEmailAndPassword(name, email, password)
-     
+      registerWithEmailAndPassword(name, email, password);
       setLoading(true);
     } else {
-      alert("check your input field");
       setLoading(false);
+      alert("Check your input fields");
     }
-
-    console.log("formik", formik);
   };
-
   const formik = useFormik({ initialValues, validationSchema, handleRegister });
+
   return (
     <>
       {loading ? (
@@ -149,7 +149,7 @@ function Register() {
               </form>
             </CardBody>
             <CardFooter className="pt-0">
-              <Button variant="gradient" fullWidth className="my-3">
+              <Button variant="gradient" fullWidth className="my-3" onClick={signInWithGoogle}>
                 Sign In with Google
               </Button>
 

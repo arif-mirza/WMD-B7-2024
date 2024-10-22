@@ -6,7 +6,7 @@ const  Card = ({name  , img, status} ) => {
     <div>
       <div className="relative">
       <img
-          className="h-60 w-52 rounded-2xl hover:scale-105 duration-700 ease-in-out cursor-pointer shadow-lg"
+          className="h-40 md:h-60 w-52 rounded-2xl hover:scale-105 duration-700 ease-in-out cursor-pointer shadow-lg"
           src={img}
           alt={name}
         />

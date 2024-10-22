@@ -14,17 +14,17 @@ function Home() {
     <Navbar />
       </div>
       <div className="flex bg-gray-100">
-        <div className="flex-auto w-[20%] fixed top-12">
+        <div className="hidden lg:block lg:flex-auto lg:w-[20%] fixed top-12">
           <LeftSideBar />
         </div>
-        <div className="flex-auto w-[60%] absolute left-[20%] top-14 bg-gray-100 rounded-xl">
-          <div className="w-[80%] mx-auto">
+        <div className="flex-auto w-full lg:w-[60%] lg:absolute lg:left-[20%] top-14 bg-gray-100 rounded-xl">
+          <div className="w-[90%] lg:w-[80%] mx-auto">
             <CardSection></CardSection>
             <Main></Main>
             
           </div>
         </div>
-        <div className="flex-auto w-[20%] fixed right-0 top-12">
+        <div className="hidden lg:block lg:flex-auto lg:w-[20%] fixed right-0 top-12">
           <RightSideBar />
         </div>
       </div>

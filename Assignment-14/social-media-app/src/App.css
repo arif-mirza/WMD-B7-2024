@@ -3,3 +3,62 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Ensures the loader stays fixed in the center */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  z-index: 9999; /* Make sure it overlays other content */
+}
+
+/* The loading logo with fade-in animation */
+.loading-logo {
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards; /* Fade-in animation for 2 seconds */
+  width: 300px; 
+  height: auto; /* Maintain the aspect ratio */
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Adjust the size of the logo for different screen sizes */
+
+/* For larger screens (desktops and above) */
+@media (min-width: 1024px) {
+  .loading-logo {
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* For medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .loading-logo {
+    width: 15vw;
+  }
+}
+
+/* For smaller screens (mobile phones) */
+@media (max-width: 767px) {
+  .loading-logo {
+    width: 25vw;
+  }
+}

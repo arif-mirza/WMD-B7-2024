@@ -40,7 +40,7 @@ const RightSideBar = () => {
   }
   return (
     <>
-      <div className="flex flex-col h-screen bg-white shadow-lg border-2 rounded-l-xl">
+      <div className="flex flex-col h-screen bg-white shadow-lg border-2 rounded-l-xl overflow-auto">
         <div className="flex flex-col items-centers relative pt-10">
           <img className="h-48 rounded-md" src={waterslide} alt="" />
         </div>
@@ -108,6 +108,7 @@ const RightSideBar = () => {
           </p>
         )}
       </div>
+      
     </>
   );
 };

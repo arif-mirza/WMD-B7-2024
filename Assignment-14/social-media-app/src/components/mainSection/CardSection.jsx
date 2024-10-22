@@ -4,7 +4,7 @@ const  CardSection = () => {
   return (
    <>
    <div>
-    <div className="grid grid-cols-5 gap-2 pt-8 mb-10">
+    <div className="mt-16 grid grid-cols-4 gap-2 pt-8 mb-5">
     {cardData.map((card) => {
           return (
             <div key={card.id}>

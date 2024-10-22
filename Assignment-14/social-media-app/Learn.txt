@@ -1,0 +1,58 @@
+Q # 1 :-- how to use formik?
+Answer:-- We will discuss it following:
+         => We create the schema.
+         => const { email, password } = formik.values; we create an object and equal to fomik.values.
+         => We use this syntax for check formik.isValid === true
+         => const formik = useFormik({ initialValues, validationSchema, handleSubmit }); we inititalized this 
+            three things for use formik.
+         => We use this line in each input fields {...formik.getFieldProps("email")}
+         => We create the error massege under the input field my using this lines :
+               {formik.touched.email && formik.errors.email && (
+                    <Typography variant="small" color="red">
+                      {formik.errors.email}
+                    </Typography>
+                  )}
+         => This thing is should be notied that we install and import it useFormik.
+
+Q # 2 :-- how to create AppContext logic and apply on our project?
+Answer:-- We discuss it in following points :
+         => we wrap our app.js file in AppContext component
+         => We create the createContext and export it.
+         => we put the props of children in our AppContext component.
+         => in the return we put the AuthContext.Provider and give the props of initialStates.
+         => and give the children props here is the code example :
+              <AuthContext.Provider value={initialState}>
+                   {children}
+               </AuthContext.Provider>
+
+
+
+Q # 3 :-- how to use Firebase in our project and discuss all the buildin features of firebase?
+Answer:-- We can use firebase in our project by following steps :
+
+
+        => We create the FireStore.js file and add the keys which we create on firebase and export db,  auth, 
+           onAuthStateChanged we use this things in our whole project.
+ 
+        => all we understand the buildin features of firebase/Auth and its syntaxs:
+          * signInWithPopup(auth, provider) provider is the maybe google and others like fb etc.
+          * signInWithEmailAndPassword(auth, email, password)
+          * createUserWithEmailAndPassword(auth, email, password)
+          * sendPasswordResetEmail(auth, email)
+          * signOut(auth)
+
+        =>  all we understand the buildin features of firebase/FireStore and its syntaxs:
+          * collection(db, "collecion name");
+          * query(collecion, where("uid", "==", user.uid)); for find the specific data
+          * where("uid", "==", user.uid) for apply the conditions 
+          ٭ getDocs(query) check if the conditions are already there
+          ٭ addDoc(collecion, {object of user with all the keys and there values})
+          ٭  onSnapshot(query , (doc) => {setUserData(doc?.docs[0]?.data())});
+
+
+        => onAuthStateChanged(auth, async (user) => {conditions on users})
+
+Q # 5 :-- how to create store in our project and create the functionalities?
+Answer:--  First of all we create the post states and postactions and then we create the swtich statement and
+           then we provide the different cases depending on our conditions.
+        => we use the useReduce hook for use of postReducers and actions 
