@@ -5,6 +5,7 @@ import { updatePost } from "../../store/Slices/feedSlice.jsx";
 import Button from "../Button/Button.jsx";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase/firebase.js";
+import { styled, TextField } from "@mui/material";
 
 function CreatePost() {
   const dispatch = useDispatch();
@@ -93,6 +94,13 @@ function CreatePost() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+      {/* <TextField
+        id="standard-basic"
+        variant="standard"
+        placeholder="Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      /> */}
       <input
         type="text"
         value={description}
@@ -106,7 +114,6 @@ function CreatePost() {
         <Button
           title={post ? "update Post" : "CreatePost"}
           onClickHandler={handlePost}
-          
         />
       )}
     </>
