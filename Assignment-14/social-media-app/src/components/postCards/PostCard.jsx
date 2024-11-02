@@ -6,7 +6,7 @@ import comment from "../../assets/images/comment.png";
 import remove from "../../assets/images/delete.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AppContext/AppContext";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import {
   postsReducer,
@@ -29,14 +29,13 @@ import {
 import { db } from "../../firebase/firebase";
 import CommentSection from "../comments/CommentSection.jsx";
 
-const  PostCard = ({ uid, id, logo, name, email, text, image, timestamp }) => {
-
+const PostCard = ({ uid, id, logo, name, email, text, image, timestamp }) => {
   const { user } = useContext(AuthContext);
   const [state, dispatch] = useReducer(postsReducer, postStates);
   const likesRef = doc(collection(db, "posts", id, "likes"));
   const likesCollection = collection(db, "posts", id, "likes");
   const { ADD_LIKE, HANDLE_ERROR } = postActions;
-  const [open , setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
   const singlePostDocument = doc(db, "posts", id);
 
   const addUser = async () => {
@@ -60,7 +59,7 @@ const  PostCard = ({ uid, id, logo, name, email, text, image, timestamp }) => {
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);
-  }
+  };
 
   // handle likes
   const handleLike = async (e) => {
@@ -78,31 +77,30 @@ const  PostCard = ({ uid, id, logo, name, email, text, image, timestamp }) => {
         });
       }
     } catch (err) {
-      alert(err.message); 
-    console.log(err.message);
+      alert(err.message);
+      console.log(err.message);
     }
   };
-// deletepost 
-const deletePost = async(e) => {
-  e.preventDefault();
-  try{
-    if(user?.uid == uid){
-      await deleteDoc(singlePostDocument);
-      
-    }else{
-      alert("You cant delete other users posts !!!");
+  // deletepost
+  const deletePost = async (e) => {
+    e.preventDefault();
+    try {
+      if (user?.uid == uid) {
+        await deleteDoc(singlePostDocument);
+      } else {
+        alert("You cant delete other users posts !!!");
+      }
+    } catch (err) {
+      alert(err.message);
+      console.log(err.message);
     }
-  }catch(err){
-    alert(err.message); 
-    console.log(err.message);
-  }
-}
+  };
   // useEffect hook
   useEffect(() => {
     const getLikes = async () => {
       try {
         const q = collection(db, "posts", id, "likes");
-        await onSnapshot(q, (doc) => {
+        onSnapshot(q, (doc) => {
           dispatch({
             type: ADD_LIKE,
             likes: doc.docs.map((item) => item.data()),
@@ -110,8 +108,8 @@ const deletePost = async(e) => {
         });
       } catch (err) {
         dispatch({ type: HANDLE_ERROR });
-        alert(err.message); 
-    console.log(err.message);
+        alert(err.message);
+        console.log(err.message);
       }
     };
     return () => getLikes();
@@ -167,7 +165,10 @@ const deletePost = async(e) => {
             {state.likes?.length > 0 && state?.likes?.length}
           </button>
 
-          <div className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100" onClick={handleOpen}>
+          <div
+            className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100"
+            onClick={handleOpen}
+          >
             <div className="flex items-center cursor-pointer">
               <img className="h-8 mr-4" src={comment} alt="comment" />
               <p className="font-roboto font-medium text-md text-gray-700 no-underline tracking-normal leading-none">
@@ -176,7 +177,10 @@ const deletePost = async(e) => {
             </div>
           </div>
 
-          <div className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100" onClick={deletePost}>
+          <div
+            className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100"
+            onClick={deletePost}
+          >
             <img className="h-8 mr-4" src={remove} alt="delete" />
             <p className="font-roboto font-medium text-md text-gray-700 no-underline tracking-normal leading-none">
               Delete
@@ -184,9 +188,9 @@ const deletePost = async(e) => {
           </div>
         </div>
       </div>
-      {open && <CommentSection  postId={id} />}
+      {open && <CommentSection postId={id} />}
     </div>
   );
-}
+};
 
 export default PostCard;

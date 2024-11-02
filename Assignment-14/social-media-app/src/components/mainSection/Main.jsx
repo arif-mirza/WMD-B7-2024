@@ -1,5 +1,5 @@
 // imports
-import { Alert, Avatar, Button, progress } from "@material-tailwind/react";
+import { Alert, Avatar, Button } from "@material-tailwind/react";
 import avatar from "../../assets/images/avatar.jpg";
 import live from "../../assets/images/live.png";
 import smile from "../../assets/images/smile.png";
@@ -14,7 +14,7 @@ import {
   query,
   serverTimestamp,
   setDoc,
-  Timestamp,
+  // Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { postsReducer, postActions, postStates } from "../../store/PostReducer";
@@ -84,13 +84,10 @@ const Main = () => {
   // to handle the images
   const submitImage = async () => {
     const fileType = metadata.contentType.includes(file["type"]);
-    console.log("file", file);
-    if (!file) {
-      return;
-    }
+    if (!file) return;
     if (fileType) {
       try {
-        const storageRef = ref(storage, `image/${file.name}`);
+        const storageRef = ref(storage, `images/${file.name}`);
         const uploadTask = uploadBytesResumable(
           storageRef,
           file,
@@ -99,8 +96,9 @@ const Main = () => {
         await uploadTask.on(
           "state_changed",
           (snapshot) => {
-            const progress =
-              Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
             setProgressBar(progress);
           },
           (error) => {
@@ -110,21 +108,17 @@ const Main = () => {
             await getDownloadURL(uploadTask.snapshot.ref).then(
               (downloadURL) => {
                 setImage(downloadURL);
-                setFile(null);
-                setProgressBar(0);
               }
             );
           }
         );
-        console.log(file);
       } catch (err) {
         dispatch({ type: HANDLE_ERROR });
-        console.error(err);
-        alert(err.messege);
+        alert(err.message);
+        console.log(err.message);
       }
     }
   };
-
   const handleUpload = (e) => {
     setFile(e.target.files[0]);
   };
@@ -242,6 +236,7 @@ const Main = () => {
             <div>
               {state.posts.length > 0 &&
                 state?.posts?.map((post, index) => {
+                  console.log("state.posts ====> ", state.posts)
                   return (
                     <PostCard
                       key={index}

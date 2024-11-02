@@ -1,0 +1,162 @@
+steps:
+
+1- create the vite@latest app
+2-  create the folder stucture (pages, routing, store, components)
+3- first of all create the routing in app.js
+4- create the home page and write it routing.
+5- install the dependencies (react-router-dom,redux, firestore, Yup)
+6- choose the framework for styling and connect to our app (bootstrap).
+7- create the components and write it into the home page
+8- setup the store and slices
+9- ham ne slice me data read karne ka data rakha hy
+10- firebase webapp create kare ge firebase console me ja k.
+11- firebase.js me code copy kar k past kare ge
+12- first of all slice me data add karne ka function bnaye ge thunk function
+13- thunk k sath ham us k extra reducer bhi banaye ge jo store aur bahir k data ko connect karta hy 
+    store k sath.
+14- us k bad ham add data wala portion cover kare ge
+15- us k bad ham getData wala portion complete kare ge
+16- us k bad ham deleteData wala portion complete kare ge jis k liye ham dono thunk aur builder funcion bnaye ge aur ko dispatch kare ge
+17- us k bad ham update wala portion complete kare ge jis k liye ham 3 funcion bnaye ge thunk, builder or sada funcion.
+    sada function ham feedList of dispatch kare ge aur thunk funcion ham createpost me add kare ge
+18- next ham images ya files ko manage karne k liye firebase me storage banaye ge according to
+    documentation
+19- is k liye ham uploadBytes, metadata and fileRef and getDownloadURL chaiye 
+      const fileRef = ref(storage, 'images/'+ file.name);
+      uploadBytes(fileRef, file, metadata)
+      getDownloadURL(fileRef)
+
+      dispatch(createPost({...postData, file, setLoading})); is tarha ham postData or file transfer kare ge action me ye file action me post k parameter me jaye gi phir us ko post.file se get kare ge
+
+      post update karne k liye updatepost ka object bnaye ge phir us ko collectionRef me post wale object
+      ki jaga updatePost likh den ge
+
+20- is k bad ham authentication kare ge user k liye firebase me authentication on kare ge aur docs se 
+    help le ge is ki 
+
+21 - login ka page banaye ge aur signup ka page bnaye ge aur authSlice bnaye ge aur us ko store me pass
+     kare ge
+22- public aur private component bnaye ge home ko privateRoute me wrap kare ge aur login aur signup ko 
+    public route wale component me wrap kare gen.
+
+
+information :
+
+1- collectionRef(db, 'posts') => post k name se firebase me ak collection ban jaye ga
+2- addDoc(collectionRef, object) => ye object wo hy jis object ka data ap store karwana chahte hen.
+3- getDocs(collectionRef) => getDocs apne ander collection leta hy 
+4- post k ander wala data get karne k liye data() k object ko call karna parta hy
+5- Query ka method use karte jo condition check karta hy is me 2 perameter jate hen ak collectionRef aur 2sra condition such as where()
+   and and orderBy aur ye query ham getDocs ko de ge
+6- orderBy k zariye ham post ko sequence me rakhte hen ye where k sath hi use hota hy orderBy("title);
+7- limit k zariye ham ye set karte hen k kitni post ak time me dikhani hy limit(3)
+8- data ko delete karne k liye doc aur deleteDoc ka use kare ge
+9- doc(db, collection ka name, jis ko delete karna hy) doc(db,'posts', docId);
+10- deleteDoc(doc keta hy apne ander) deleteDoc(docRef)
+11- updateDoc(docRef, post) is ki help se ham update kare ge data ko docRef me doc(db, "posts", post.docId);
+12- file upload karne k liye hame file ka reference chaiye jo ref ki help se banta hy 
+   ref(storage , image ka path)
+   us ka bad hame uploadBytes ka funciton chaiye jo apne ander 3 parameter leta hy
+   uploadBytes(fileRef, file ka name, metadata)
+   us ka bad hame getDownloadURL funcion requrie hy jo apne ander fileRef leta hy
+   getDownloadURL(file ka ref)
+13- authSlice me collection kahi use nai honi 
+
+
+
+
+
+
+
+
+
+
+data get karne ka method
+ => data get karne k liye first of all hame thunk function banana hy us ka aur builder function banana hy
+ => is thunk funciton me getDocs ka method call kare aur end pe data return kar den ge 
+ => is funciton ko dispatch kar den ge end pe
+
+ data read karne ka method
+ => data read karne k liye ya get karne k liye ham thunk funciton banaye ge aur us ka builder function 
+    bhi bnaye ge
+ => is thunk funciton me ham getDocs use kare ge jo sirf apne ander collectionRef leta hy.
+ => is k liye ham empty array bante hen aur forEach use kar k data get karte hen data() k function ko
+    call kar kare 
+ => us k bad ham action ko dispatch karte hen.
+ => read wale method me queries bhi invole hoti hen
+ => onSnapshot hame realtime data deta hy
+ => queries ki help se ham data par conditions laga skte hen aur jaga collectionRef diya hy waha is query ka reference dana hy 
+ 
+ data Delete karne ka method
+ => first of all ham action banaye ge data ko delete karne k liye thunk aur builder dono 
+ => Id ka khyal rakhna hy thunk me k us ko erturn karwana hy
+
+
+ data ko update karne ka method
+ => first of all ham dono method bnaye ge thunk bhi aur builder bhi 
+ => thunk me updateDoc ka method use kar k ham us ko update kare ge updateDoc(postRef, post)
+ => ak sada funciton banaye ge jo update hone wali post ki id get kare find method se ga fieldlist me is ko dispatch kare ge
+ => create post me ak if condition lagaye ge k agar post hy tu dispatch(updatePost({...postData,docId:post.docId}))
+
+
+Authentication
+1- first of all ham signup and login ka component banaye ge
+2- us ka bad ham routes banaye ge
+3- phir us k bad ham signup ka sara code likhe ge
+4- us k bad ham signup k liye thunk or builder function bnayte ge
+5- isi trha ham login ka compoent bnayte aur us ka thunk or builder function bnaye ge 
+
+sign =>>>>
+    1- is ka component design kare ge aur input fields se sara data state me get kare ge 
+    2- jitni input fields hongi utni hi ham state define kare ge
+    3- signup button pe funcion pass kare ge jo user ka object de ga jis ko ham ne thunk funcion 
+        funcion dispatch kia hoga
+    4- thunk function me createUserWithEmailAndPassword(auth, user.name, user.password) ka use kare ge
+        phir is ko user me add kare ge  
+    5- phir ak object bnaye ge jaise saveUserTodb aur us me ak uid bhi bnaye ge .
+    6- phir ham is data ko set karna chahte hen tu is k liye hame setDoc ka use karna pare ga
+        setDoc(collectionRef, saveUserTodb);
+        collectionRef(doc(db, "users", userCredential.user.uid);)
+    7- end pe is ko return karna hy 
+
+Login =>>>
+    1- is ka component design kare ge jis me do input fields hongi signup ki tarha values get kare ge
+        aur ak user k object me states get kare ge aur action dispatch kare ge
+    2- phir ham thunk funcion bnate ge jis me ham signInWithEmailAndPassword(auth, user.name, user.pass)
+    3- is bar ham data get karna chahte hen is liye ham getDoc ka use kare ge
+        collectionRef = doc(db, "users", userCredential.user.uid)
+        getDoc(collectionRef) apne ander collection ka reference leta hy 
+        phir ham is getDoc ko kisi variable me store karwaye ge aur us k sath data() likhna hy
+        const dbUser = docSnap?.data();
+    4- end pe is dbUser ko return karna hy aur builder function banana hy
+
+Logout =>>>>
+    1- first of all hamne logout k liye thunk or builder funcion banana hy 
+    2- thunk function me ham ne sirf signOut(auth); use karna hy try catch me bas 
+    3- builder me state.user = null karni hy 
+    4- logout ka button banana hy aur us ko function pass karna hy aur action dispatch karna hy 
+
+CurrentUser =>>>
+    1- first of all ham thunk or builder function bnaye ge.
+    2- app.js me ham useEffect of action dispatch kare ge aur parameter me setLoading den ge
+    3- thunk function me setLoading or store pishe se le ga phir ham try catch me ham onAuthstateChange  
+       use kare ge jo k auth or call back funciton leta hy 
+    4- doc ka reference bnaye ge doc(db, "users", uid) 
+    5- phir getDoc kare ge jo sirf apne ander docRef leta hy 
+    6- aur phir is ko data ki form me badal den ge const dbUser = docSnap?.data();
+    7- phir user set kare ge store me store.dispatch(setUser(dbUser));
+
+
+
+Private and public Routing =>>>
+1- first of all ham private aur public ka component bnaye ge
+2- private wale me ham user get kare ge through useSelector aur condition set kare ge children ka prop
+    pass kar ka children k spelling thik rakhne hen
+    export default function PrivateRoute({ children }) {
+     const user = useSelector((store) => store.authSlice.user);
+     return user ? children : <Navigate to="/login" />;
+   }
+3- isi tarha ham public wale me bhi ayse hi kare ge bas condition change kare ge
+    return user ? <Navigate to="/" /> : children;
+4- phir only routing wale component me ja kar hamne home ko PrivateRoute me wrap kar dena hy aur 
+    login aur signup ko publicRoute me wrap kar dena hy 

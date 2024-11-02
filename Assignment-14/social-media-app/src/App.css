@@ -52,13 +52,13 @@
 /* For medium screens (tablets) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .loading-logo {
-    width: 15vw;
+    width: 200px;
   }
 }
 
 /* For smaller screens (mobile phones) */
 @media (max-width: 767px) {
   .loading-logo {
-    width: 25vw;
+    width: 170px;
   }
 }
